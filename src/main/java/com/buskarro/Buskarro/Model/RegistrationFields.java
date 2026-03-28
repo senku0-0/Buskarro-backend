@@ -19,4 +19,5 @@ public class RegistrationFields {
     private String username;
     private String phoneno;
     private String password;
+    private String role;
 }
