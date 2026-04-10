@@ -31,14 +31,10 @@ public class RegistrationController {
     @PostMapping
     public ResponseEntity<?> saveUser(@RequestBody RegistrationFields req){
         try {
-            String name = req.getName();
-            String email = req.getEmail();
-            String phone= req.getPhone();
             String password = req.getPassword();
             String encode_password = passwordEncoder.encode(password);
             req.setPassword(encode_password);
             req.setRole("USER");
-            System.out.println("Received: " + name + ", " + email+ ", " +phone+ ", " +password);
             service.saveUser(req);
             System.out.println("User saved successfully!");
             return new ResponseEntity<>(HttpStatus.OK);
