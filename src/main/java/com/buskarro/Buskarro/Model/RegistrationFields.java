@@ -1,5 +1,6 @@
 package com.buskarro.Buskarro.Model;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
@@ -16,8 +17,11 @@ public class RegistrationFields {
     @Indexed(unique = true)
     private String email;
     @Indexed(unique = true)
-    private String username;
-    private String phoneno;
+    private String name;
+    private String phone;
     private String password;
+    private String companyName;
+    private String gstin;
+    private String address;
     private String role;
 }

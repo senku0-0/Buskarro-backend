@@ -8,6 +8,6 @@ import java.util.Optional;
 
 public interface RegistrationRepo extends MongoRepository<RegistrationFields, ObjectId> {
     Optional<RegistrationFields> findByEmail(String email);
-    Optional<RegistrationFields> findByUsername(String username);
+    Optional<RegistrationFields> findByName(String name);
     Optional<RegistrationFields> deleteByEmail(String email);
 }

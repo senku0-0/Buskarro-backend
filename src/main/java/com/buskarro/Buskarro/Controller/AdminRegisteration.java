@@ -1,6 +1,5 @@
 package com.buskarro.Buskarro.Controller;
 
-import com.buskarro.Buskarro.Config.SpringSecurity;
 import com.buskarro.Buskarro.Model.RegistrationFields;
 import com.buskarro.Buskarro.Service.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,15 +8,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.swing.*;
 
 @RestController
-@RequestMapping("/Register")
-public class RegistrationController {
-    @Autowired
-    private RegistrationService service;
+@RequestMapping("/admin-reg")
+public class AdminRegisteration {
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private RegistrationService service;
 
     @GetMapping
     public ResponseEntity<?> getAllUsers(){
@@ -29,16 +28,12 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public ResponseEntity<?> saveUser(@RequestBody RegistrationFields req){
+    public ResponseEntity<?> saveAdminUser(@RequestBody RegistrationFields req){
         try {
-            String name = req.getName();
-            String email = req.getEmail();
-            String phone= req.getPhone();
             String password = req.getPassword();
             String encode_password = passwordEncoder.encode(password);
             req.setPassword(encode_password);
-            req.setRole("USER");
-            System.out.println("Received: " + name + ", " + email+ ", " +phone+ ", " +password);
+            req.setRole("ADMIN");
             service.saveUser(req);
             System.out.println("User saved successfully!");
             return new ResponseEntity<>(HttpStatus.OK);
@@ -46,5 +41,4 @@ public class RegistrationController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-
 }

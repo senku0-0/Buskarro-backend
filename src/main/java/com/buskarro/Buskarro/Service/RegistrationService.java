@@ -19,8 +19,8 @@ public class RegistrationService {
     public Optional<RegistrationFields> getByEmail(String email){
         return repo.findByEmail(email);
     }
-    public Optional<RegistrationFields> getByUsername(String username){
-        return repo.findByUsername(username);
+    public Optional<RegistrationFields> getByUsername(String name){
+        return repo.findByName(name);
     }
     public void saveUser(RegistrationFields entry){ repo.save(entry); }
     public void deleteUser(String email){ repo.deleteByEmail(email); }
