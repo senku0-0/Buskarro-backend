@@ -16,7 +16,6 @@ public class RegistrationFields {
     private ObjectId id;
     @Indexed(unique = true)
     private String email;
-    @Indexed(unique = true)
     private String name;
     private String phone;
     private String password;
