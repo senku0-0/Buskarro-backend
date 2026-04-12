@@ -11,16 +11,13 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @Document
-public class Session {
+public class SessionFields {
     @Id
     private ObjectId id;
-
-    private ObjectId userId;       // link to RegistrationFields
-    private String token;          // random session token or JWT ID
-    private LocalDateTime createdAt;
-    private LocalDateTime expiresAt;
-
-    private String ipAddress;      // for security
-    private String userAgent;      // track device/browser
-    private boolean isActive;      // soft revoke
+    private ObjectId userId;       // link to RegistrationFields, get from Registration
+    private String token;          // random session token or JWT ID, google auth
+    private LocalDateTime createdAt; // auto filled
+    private LocalDateTime expiresAt; // auto filled
+    private String ipAddress;      // for security, get from user
+    private boolean isActive;      // soft revoke, set by default
 }
