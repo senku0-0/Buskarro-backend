@@ -48,7 +48,7 @@ public class RegistrationController {
             user.setEmail(req.getEmail());
             user.setPhone(req.getPhone());
             user.setPassword(encode_password);
-            user.setRole("DEVELOPER");
+            user.setRole("USER");
             // Save user first
             RegistrationFields savedUser = service.saveUser(user);
             // Create session (auto-login)
