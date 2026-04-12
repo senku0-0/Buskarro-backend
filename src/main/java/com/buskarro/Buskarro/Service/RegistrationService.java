@@ -22,7 +22,7 @@ public class RegistrationService {
     public Optional<RegistrationFields> getByUsername(String name){
         return repo.findByName(name);
     }
-    public void saveUser(RegistrationFields entry){ repo.save(entry); }
+    public RegistrationFields saveUser(RegistrationFields entry){ return repo.save(entry); }
     public void deleteUser(String email){ repo.deleteByEmail(email); }
 
 }
