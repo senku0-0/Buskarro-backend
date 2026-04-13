@@ -2,6 +2,7 @@ package com.buskarro.Buskarro.Model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @Document
+@Accessors(chain = true)
 public class SessionFields {
     @Id
     private ObjectId id;
