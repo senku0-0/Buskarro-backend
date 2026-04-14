@@ -25,7 +25,7 @@ public class SpringSecurity {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Enable CORS
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/Register","/admin-reg","/login").permitAll()
+                        .requestMatchers("/Register","/admin-reg","/login","/login/google-auth").permitAll()
                         .requestMatchers("/admin").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
