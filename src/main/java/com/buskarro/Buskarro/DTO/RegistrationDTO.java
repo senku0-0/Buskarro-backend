@@ -10,4 +10,8 @@ public class RegistrationDTO {
     private String phone;
     private String email;
     private String password;
+    private String authProvider; // "GOOGLE" or "LOCAL"
+    private Boolean email_verified;
+    private String google_id;
+    private String google_token;
 }
