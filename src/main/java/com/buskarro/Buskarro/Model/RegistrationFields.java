@@ -24,4 +24,7 @@ public class RegistrationFields {
     private String gstin;
     private String address;
     private String role;
+    private String authProvider; // "GOOGLE" or "LOCAL"
+    private Boolean email_verified;
+    private String google_id;
 }
