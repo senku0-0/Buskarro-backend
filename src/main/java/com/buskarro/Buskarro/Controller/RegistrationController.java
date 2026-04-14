@@ -44,24 +44,26 @@ public class RegistrationController {
             RegistrationFields user = new RegistrationFields();
             String password = req.getPassword();
             String encode_password = passwordEncoder.encode(password);
-            user.setName(req.getName());
-            user.setEmail(req.getEmail());
-            user.setPhone(req.getPhone());
-            user.setPassword(encode_password);
-            user.setRole("USER");
+            user
+                    .setName(req.getName())
+                    .setEmail(req.getEmail())
+                    .setPhone(req.getPhone())
+                    .setAuthProvider("LOCAL")
+                    .setPassword(encode_password)
+                    .setRole("USER");
             // Save user first
             RegistrationFields savedUser = service.saveUser(user);
             // Create session (auto-login)
             SessionFields session = new SessionFields();
             String getJwt = jwtUtility.generateToken(savedUser.getId(), savedUser.getEmail(), savedUser.getRole(), savedUser.getName() );
-            session.setUserId(savedUser.getId());
-            session.setToken(getJwt);
-            session.setCreatedAt(LocalDateTime.now()); // store current time
-            session.setExpiresAt(LocalDateTime.now().plusHours(24)); // 24 hrs of session
-            session.setIpAddress(request.getRemoteAddr()); // user ip Address
-            session.setActive(true);
+            session
+                    .setUserId(savedUser.getId())
+                    .setToken(getJwt)
+                    .setCreatedAt(LocalDateTime.now()) // store current time
+                    .setExpiresAt(LocalDateTime.now().plusHours(24))// 24 hrs of session
+                    .setIpAddress(request.getRemoteAddr()) // user ip Address
+                    .setActive(true);
             ses.save(session);
-            System.out.println("User saved successfully!");
             return ResponseEntity.ok(Map.of("jwt_token",getJwt));
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
