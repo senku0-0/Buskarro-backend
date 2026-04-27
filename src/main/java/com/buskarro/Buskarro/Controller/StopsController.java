@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/stops")
 public class StopsController {
@@ -24,18 +26,20 @@ public class StopsController {
     }
 
     @PostMapping
-    public ResponseEntity<?> saveUser(@RequestBody StopsDTO req, HttpServletRequest request){
+    public ResponseEntity<?> saveUser(@RequestBody List<StopsDTO> reqs, HttpServletRequest request){
         try {
-            StopsFields stops = new StopsFields();
-            stops
-                    .setStopName(req.getStopName())
-                    .setStopId(req.getStopId())
-                    .setCity(req.getCity())
-                    .setState(req.getState())
-                    .setLatitude(req.getLatitude())
-                    .setLongitude(req.getLongitude())
-                    .setLocation_link(req.getLocation_link());
-            service.saveStop(stops);
+            for (StopsDTO req : reqs) {
+                StopsFields stops = new StopsFields();
+                stops
+                        .setStopName(req.getStopName())
+                        .setStopId(req.getStopId())
+                        .setCity(req.getCity())
+                        .setState(req.getState())
+                        .setLatitude(req.getLatitude())
+                        .setLongitude(req.getLongitude())
+                        .setLocation_link(req.getLocation_link());
+                service.saveStop(stops);
+            }
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
